@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Absage · Bauch Baby Beckenboden</title>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: '6DXWttFI3lioO8ZHC' });
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --burgundy:      #7a3f3a;
+    --burgundy-dark: #5c2e2b;
+    --cream:         #f2ede8;
+    --cream-light:   #f8f4f0;
+    --border:        #e2d8d0;
+    --gold:          #c4a882;
+    --brown-mid:     #7a5c4a;
+    --text:          #2a1a1a;
+    --text-muted:    #8a7060;
+    --green:         #4a7a5c;
+    --green-light:   #eef5f1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--burgundy);
+    padding: 48px 32px 64px;
+    color: var(--cream-light);
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 36px;
+    background: var(--cream);
+    border-radius: 36px 36px 0 0;
+  }
+
+  .hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .hero-logo {
+    width: 64px; height: 64px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-logo img {
+    width: 64px; height: 64px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.88);
+  }
+  .hero-brand-name {
+    font-size: 15px; font-weight: 400;
+    letter-spacing: 0.3px;
+    color: var(--cream-light);
+    line-height: 1.25;
+  }
+  .hero-brand-sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream-light);
+    margin-bottom: 2px;
+  }
+  .hero-h1-italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.15;
+    display: block;
+    margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-size: 14px; font-weight: 300;
+    line-height: 1.8;
+    color: rgba(248,244,240,0.72);
+    max-width: 420px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 64px;
+  }
+
+  /* ── CARDS ── */
+  .form-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px 26px 22px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+  }
+
+  .section-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    color: #fff;
+    font-size: 13px; font-weight: 400;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--text);
+  }
+
+  /* ── FIELDS ── */
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .field-row .field { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 300;
+    color: var(--text);
+    background: var(--cream-light);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    -webkit-appearance: none; appearance: none;
+    outline: none;
+  }
+  input:focus, select:focus {
+    border-color: var(--burgundy);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(122,63,58,0.09);
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a5c4a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-color: var(--cream-light);
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* ── TERMIN KARTEN ── */
+  .termin-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .termin-card {
+    background: var(--cream-light);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    position: relative;
+    animation: slideIn 0.25s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .termin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .termin-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    font-weight: 500;
+  }
+  .termin-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .termin-remove:hover { color: var(--burgundy); background: rgba(122,63,58,0.07); }
+
+  .termin-date-field { margin-bottom: 12px; }
+  .termin-date-field label { margin-bottom: 6px; }
+
+  /* ── MINI TOGGLE (Online / Absage) ── */
+  .termin-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; font-weight: 400;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s, color 0.18s;
+    white-space: nowrap;
+  }
+  .toggle-btn .tb-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.18s;
+  }
+  .toggle-btn.selected-online {
+    border-color: var(--green);
+    background: var(--green-light);
+    color: var(--green);
+  }
+  .toggle-btn.selected-online .tb-dot { background: var(--green); }
+
+  .toggle-btn.selected-absage {
+    border-color: var(--burgundy);
+    background: #fdf0ef;
+    color: var(--burgundy);
+  }
+  .toggle-btn.selected-absage .tb-dot { background: var(--burgundy); }
+
+  /* ── ADD TERMIN ── */
+  .btn-add-termin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: none;
+    border: 1.5px dashed var(--border);
+    border-radius: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; font-weight: 400;
+    color: var(--brown-mid);
+    cursor: pointer;
+    margin-top: 14px;
+    transition: border-color 0.18s, color 0.18s, background 0.18s;
+  }
+  .btn-add-termin:hover {
+    border-color: var(--burgundy);
+    color: var(--burgundy);
+    background: rgba(122,63,58,0.03);
+  }
+  .btn-add-termin .plus {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; line-height: 1;
+    transition: background 0.18s;
+  }
+  .btn-add-termin:hover .plus { background: rgba(122,63,58,0.1); }
+
+  /* ── INFO STRIPE ── */
+  .info-stripe {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px; color: var(--brown-mid);
+    line-height: 1.7; font-weight: 300;
+    margin-top: 14px;
+  }
+  .info-stripe .si { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  /* ── SUBMIT ── */
+  .btn-submit {
+    display: block; width: 100%;
+    background: var(--burgundy);
+    color: var(--cream-light);
+    border: none; border-radius: 100px;
+    padding: 17px 28px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+    margin-top: 18px;
+  }
+  .btn-submit:hover:not(:disabled) {
+    background: var(--burgundy-dark);
+    box-shadow: 0 6px 22px rgba(122,63,58,0.28);
+    transform: translateY(-1px);
+  }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ── ERROR ── */
+  .error-banner {
+    display: none;
+    background: #fdf0ef;
+    border: 1px solid #e8b4b0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px; color: var(--burgundy);
+    margin-top: 14px; line-height: 1.6;
+  }
+
+  /* ── SUCCESS ── */
+  .success-screen {
+    display: none;
+    background: #fff;
+    border-radius: 16px;
+    padding: 52px 28px;
+    text-align: center;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .s-icon { font-size: 42px; margin-bottom: 18px; }
+  .success-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 300;
+    color: var(--burgundy); margin-bottom: 0;
+  }
+  .s-italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 22px;
+    color: var(--gold); display: block;
+    margin-bottom: 22px;
+  }
+  .success-screen p {
+    font-size: 14px; color: var(--text-muted);
+    font-weight: 300; line-height: 1.85;
+  }
+  .success-termin-list {
+    text-align: left;
+    margin: 18px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .success-termin-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream-light);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .sti-badge {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .sti-badge.online  { background: var(--green-light); color: var(--green); }
+  .sti-badge.absage  { background: #fdf0ef; color: var(--burgundy); }
+
+  /* ── FOOTER ── */
+  .foot {
+    text-align: center;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 24px 20px 20px;
+  }
+
+  .req { color: var(--burgundy); }
+
+  @media (max-width: 500px) {
+    .hero { padding: 36px 22px 58px; }
+    .hero-h1, .hero-h1-italic { font-size: 32px; }
+    .content { padding: 0 14px 48px; }
+    .form-section { padding: 20px 18px 18px; }
+    .field-row { grid-template-columns: 1fr; }
+    .termin-toggle { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-brand">
+    <div class="hero-logo">
+      <img src="/logo.png" alt="Bauch Baby Beckenboden Logo"/>
+    </div>
+    <div>
+      <div class="hero-brand-name">Bauch · Baby · Beckenboden</div>
+      <div class="hero-brand-sub">Kursmeldung</div>
+    </div>
+  </div>
+
+  <div class="hero-eyebrow">Kurzmeldung</div>
+  <div class="hero-h1">Absage oder</div>
+  <span class="hero-h1-italic">Online-Teilnahme</span>
+  <p class="hero-desc">Kannst Du nicht live dabei sein oder möchtest Du online teilnehmen? Sag kurz Bescheid – ich freue mich, wenn ich planen kann 🌸</p>
+</div>
+
+<!-- CONTENT -->
+<div class="content" id="mainContent">
+
+  <!-- 1 Name -->
+  <div class="form-section">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <div class="section-title">Dein Name</div>
+    </div>
+    <div class="field">
+      <label for="vorname">Vorname <span class="req">*</span></label>
+      <input type="text" id="vorname" placeholder="Dein Vorname" autocomplete="given-name"/>
+    </div>
+  </div>
+
+  <!-- 2 E-Mail (NEU – für EmailJS Bestätigung) -->
+  <div class="form-section">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <div class="section-title">Deine E-Mail-Adresse</div>
+    </div>
+    <div class="field">
+      <label for="email">E-Mail <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="deine@email.de" autocomplete="email"/>
+    </div>
+  </div>
+
+  <!-- 3 Kursauswahl -->
+  <div class="form-section">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <div class="section-title">Dein Kurs</div>
+    </div>
+    <div class="field">
+      <label for="kursart">Kurs <span class="req">*</span></label>
+      <select id="kursart">
+        <option value="" disabled selected>Bitte wählen …</option>
+        <option value="Mamafit">Mamafit</option>
+        <option value="Schwangerfit">Schwangerfit</option>
+        <option value="Somatic Körpermitte &amp; Beckenboden">Somatic Körpermitte &amp; Beckenboden</option>
+        <option value="Somatic Yoga">Somatic Yoga</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 4 Termine -->
+  <div class="form-section">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <div class="section-title">Deine Termine</div>
+    </div>
+
+    <div class="termin-list" id="terminList"></div>
+
+    <button type="button" class="btn-add-termin" id="btnAddTermin" onclick="addTermin()">
+      <span class="plus">+</span>
+      Weiteren Termin hinzufügen
+    </button>
+
+    <div class="info-stripe">
+      <span class="si">🌿</span>
+      <span>Du kannst mehrere Termine auf einmal melden. Wähle für jeden Termin aus, ob Du <strong>online</strong> dabei sein möchtest oder <strong>nicht teilnehmen</strong> kannst.<br/><br/>
+      💡 <strong>Nicht dabei?</strong> Du hast die Möglichkeit, die Stunde per Video nachzuholen. Frag den Link einfach per <strong>WhatsApp</strong> bei mir an – nach Erhalt des Videolinks hast Du <strong>24 Stunden</strong> Zeit, die Stunde nachzuholen.</span>
+    </div>
+  </div>
+
+  <!-- Absenden -->
+  <div class="form-section">
+    <button type="button" class="btn-submit" id="btnSubmit" onclick="submitForm()">
+      Jetzt Bescheid geben →
+    </button>
+    <div class="error-banner" id="errorBanner"></div>
+  </div>
+
+  <!-- Erfolg -->
+  <div class="success-screen" id="successScreen">
+    <div class="s-icon">🌸</div>
+    <h2>Danke,</h2>
+    <span class="s-italic" id="successName"></span>
+    <div class="success-termin-list" id="successTerminList"></div>
+    <p id="successText"></p>
+    <p style="margin-top:20px">
+      Viele Grüße,<br/>
+      <strong>Deine ♦️ Karo ♦️</strong><br/>
+      <em style="font-size:12px;color:var(--gold)">Bauch · Baby · Beckenboden</em>
+    </p>
+  </div>
+
+</div>
+
+<div class="foot">Bauch · Baby · Beckenboden · bauch-baby-beckenboden.de</div>
+
+<script>
+  let terminCounter = 0;
+
+  /* Beim Laden ersten Termin erzeugen */
+  window.addEventListener('DOMContentLoaded', () => addTermin(true));
+
+  function addTermin(isFirst = false) {
+    terminCounter++;
+    const id = terminCounter;
+    const list = document.getElementById('terminList');
+
+    const card = document.createElement('div');
+    card.className = 'termin-card';
+    card.id = `termin-${id}`;
+    card.dataset.meldung = '';
+
+    card.innerHTML = `
+      <div class="termin-header">
+        <span class="termin-label">Termin ${id}</span>
+        ${!isFirst ? `<button type="button" class="termin-remove" title="Termin entfernen" onclick="removeTermin(${id})">✕</button>` : ''}
+      </div>
+      <div class="termin-date-field field">
+        <label>Datum <span class="req">*</span></label>
+        <input type="date" id="datum-${id}"/>
+      </div>
+      <label style="margin-bottom:8px">Ich möchte … <span class="req">*</span></label>
+      <div class="termin-toggle">
+        <button type="button" class="toggle-btn" id="tb-online-${id}" onclick="selectMeldung(${id}, 'online')">
+          <span class="tb-dot"></span> Online dabei sein
+        </button>
+        <button type="button" class="toggle-btn" id="tb-absage-${id}" onclick="selectMeldung(${id}, 'absage')">
+          <span class="tb-dot"></span> Nicht teilnehmen
+        </button>
+      </div>
+    `;
+
+    list.appendChild(card);
+    updateTerminLabels();
+  }
+
+  function removeTermin(id) {
+    const card = document.getElementById(`termin-${id}`);
+    if (card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-8px)';
+      card.style.transition = 'opacity 0.2s, transform 0.2s';
+      setTimeout(() => { card.remove(); updateTerminLabels(); }, 200);
+    }
+  }
+
+  function updateTerminLabels() {
+    const cards = document.querySelectorAll('.termin-card');
+    cards.forEach((card, i) => {
+      const lbl = card.querySelector('.termin-label');
+      if (lbl) lbl.textContent = `Termin ${i + 1}`;
+    });
+  }
+
+  function selectMeldung(id, val) {
+    const card = document.getElementById(`termin-${id}`);
+    if (!card) return;
+    card.dataset.meldung = val;
+
+    const btnOnline = document.getElementById(`tb-online-${id}`);
+    const btnAbsage = document.getElementById(`tb-absage-${id}`);
+
+    btnOnline.className = 'toggle-btn' + (val === 'online' ? ' selected-online' : '');
+    btnAbsage.className = 'toggle-btn' + (val === 'absage' ? ' selected-absage' : '');
+  }
+
+  /* ─────────────────────────────────────────────
+     HILFS-FUNKTIONEN für E-Mail-Texte
+  ───────────────────────────────────────────── */
+
+  /**
+   * Baut den termine_text für die EmailJS-Bestätigung an die Teilnehmerin.
+   * Gibt einen lesbaren Satz zurück, z. B.:
+   * "Du hast folgende Termine gemeldet:
+   *  • 12.06.2025 → Online-Teilnahme
+   *  • 19.06.2025 → Absage"
+   */
+  function buildTermineText(termine) {
+    const zeilen = termine.map(t => `• ${t.datum}  →  ${t.meldung}`).join('\n');
+    return `Du hast folgende Termine gemeldet:\n${zeilen}`;
+  }
+
+  /**
+   * Baut die optionale {{nachricht}}-Variable:
+   * Nur bei Absagen wird ein Hinweis auf das Nachholen eingefügt.
+   */
+  function buildNachricht(termine) {
+    const hatAbsage = termine.some(t => t.meldung === 'Absage');
+    const hatOnline = termine.some(t => t.meldung === 'Online-Teilnahme');
+
+    if (hatAbsage && hatOnline) {
+      return '<p>Für deine Absagen: Zum Nachholen schreib mir einfach eine kurze <a href="mailto:bauch.baby.beckenboden@gmail.com">E-Mail</a> am Tag BEVOR Du die Stunde nachholen magst. Du erhältst dann einen Link mit 24 Stunden Gültigkeit. 🍀</p>';
+    } else if (hatAbsage) {
+      return '<p>Zum Nachholen deiner Stunde schreib mir einfach eine kurze <a href="mailto:bauch.baby.beckenboden@gmail.com">E-Mail</a> am Tag BEVOR Du die Stunde nachholen magst. Du erhältst dann einen Link mit 24 Stunden Gültigkeit. 🍀</p>';
+    }
+    return '';
+  }
+
+  /* ─────────────────────────────────────────────
+     HAUPT-SUBMIT
+  ───────────────────────────────────────────── */
+  async function submitForm() {
+    const vorname     = document.getElementById('vorname').value.trim();
+    const email       = document.getElementById('email').value.trim();
+    const kursart     = document.getElementById('kursart').value;
+    const errorBanner = document.getElementById('errorBanner');
+
+    /* Validierung */
+    if (!vorname)            { showError('Bitte gib Deinen Vornamen ein.'); return; }
+    if (!email)              { showError('Bitte gib Deine E-Mail-Adresse ein.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Bitte gib eine gültige E-Mail-Adresse ein.'); return;
+    }
+    if (!kursart)            { showError('Bitte wähle Deinen Kurs aus.'); return; }
+
+    /* Termine sammeln & validieren */
+    const cards = document.querySelectorAll('.termin-card');
+    const termine = [];
+    for (const card of cards) {
+      const id      = card.id.replace('termin-', '');
+      const datum   = document.getElementById(`datum-${id}`).value;
+      const meldung = card.dataset.meldung;
+      if (!datum)   { showError('Bitte wähle für jeden Termin ein Datum aus.'); return; }
+      if (!meldung) { showError('Bitte wähle für jeden Termin aus, ob Du online dabei bist oder nicht teilnehmen kannst.'); return; }
+      const datumFormatiert = new Date(datum).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      termine.push({ datum: datumFormatiert, meldung: meldung === 'online' ? 'Online-Teilnahme' : 'Absage' });
+    }
+
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet …';
+    errorBanner.style.display = 'none';
+
+    try {
+      /* ── 1) Resend via Netlify Function → Benachrichtigung an Karo ── */
+      const resendRes = await fetch('/.netlify/functions/absage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ vorname, email, kursart, termine }),
+      });
+      if (!resendRes.ok) throw new Error('Resend fehlgeschlagen');
+
+      /* ── 2) EmailJS → Bestätigungs-E-Mail an Teilnehmerin ── */
+      const termineText = buildTermineText(termine);
+      const nachricht   = buildNachricht(termine);
+
+      await emailjs.send(
+        'service_07r1rpa',    // Service ID
+        'template_dksox2j',   // Template ID
+        {
+          Vorname:       vorname,
+          kursart:       kursart,
+          termine_text:  termineText,
+          nachricht:     nachricht,
+          reply_to:      email,   // damit Karo direkt antworten kann
+        }
+        // Empfänger-E-Mail kommt aus dem EmailJS-Template ({{reply_to}} oder feste Adresse)
+      );
+
+      /* ── Erfolg anzeigen ── */
+      document.querySelectorAll('.form-section').forEach(el => el.style.display = 'none');
+
+      document.getElementById('successName').textContent = vorname + '!';
+
+      /* Terminliste im Erfolg aufbauen */
+      const stl = document.getElementById('successTerminList');
+      stl.innerHTML = '';
+      termine.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'success-termin-item';
+        const badgeClass = t.meldung === 'Online-Teilnahme' ? 'online' : 'absage';
+        div.innerHTML = `<span class="sti-badge ${badgeClass}">${t.meldung}</span><span>${t.datum}</span>`;
+        stl.appendChild(div);
+      });
+
+      const hatOnline = termine.some(t => t.meldung === 'Online-Teilnahme');
+      const hatAbsage = termine.some(t => t.meldung === 'Absage');
+
+      let successText = '';
+      if (hatOnline && hatAbsage) {
+        successText = 'Die Zugangsdaten für Zoom findest Du in der Gruppenbeschreibung. Für die anderen Stunden kannst Du von Mo–Do eine Nachholstunde anfragen – schreib mir einfach eine WhatsApp oder E-Mail.';
+      } else if (hatOnline) {
+        successText = 'Super, ich freue mich, dass Du online dabei bist! Du findest die Zoom-Zugangsdaten in der Gruppenbeschreibung. Bei Fragen meld Dich jederzeit gerne.';
+      } else {
+        successText = 'Schade, dass Du nicht live dabei sein kannst! Um die Stunde mit einem Video zu Hause nachzuholen, sende mir eine Nachricht. Nachdem Du den Link erhalten hast, ist er 24 Stunden für Dich gültig.';
+      }
+
+      document.getElementById('successText').textContent = successText;
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = 'Jetzt Bescheid geben →';
+      showError('Leider ist etwas schiefgelaufen. Bitte versuche es erneut – wenn es wieder nicht klappt, schreib mir gerne eine WhatsApp.');
+    }
+  }
+
+  function showError(msg) {
+    const b = document.getElementById('errorBanner');
+    b.textContent = msg;
+    b.style.display = 'block';
+    b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+
+</body>
+</html>

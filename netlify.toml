@@ -1,0 +1,8 @@
+[functions]
+  directory = "netlify/functions"
+
+[build]
+  publish = "."
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NOTIFY_TO,NOTIFY_FROM"
