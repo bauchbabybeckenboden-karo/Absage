@@ -11,17 +11,17 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --burgundy:      #7a3f3a;
-    --burgundy-dark: #5c2e2b;
-    --cream:         #f2ede8;
-    --cream-light:   #f8f4f0;
-    --border:        #e2d8d0;
-    --gold:          #c4a882;
-    --brown-mid:     #7a5c4a;
-    --text:          #2a1a1a;
-    --text-muted:    #8a7060;
-    --green:         #4a7a5c;
-    --green-light:   #eef5f1;
+    --burgundy:      #8B6464;
+    --burgundy-dark: #6F4F4F;
+    --cream:         #F3E9E5;
+    --cream-light:   #FBF6F3;
+    --border:        #E0CEC8;
+    --gold:          #C4A0A0;
+    --brown-mid:     #7A5A5A;
+    --text:          #3D2B2B;
+    --text-muted:    #8A6F6A;
+    --green:         #2F6B4F;
+    --green-light:   #E9F2EC;
   }
 
   html { scroll-behavior: smooth; }
@@ -57,14 +57,12 @@
     margin-bottom: 44px;
   }
   .hero-logo {
-    width: 64px; height: 64px;
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
   .hero-logo img {
-    width: 64px; height: 64px;
-    object-fit: contain;
-    filter: brightness(0) invert(1) opacity(0.88);
+    height: 84px; width: auto;
+    display: block;
   }
   .hero-brand-name {
     font-size: 15px; font-weight: 400;
@@ -103,12 +101,19 @@
     display: block;
     margin-bottom: 24px;
   }
-  .hero-desc {
-    font-size: 14px; font-weight: 300;
-    line-height: 1.8;
-    color: rgba(248,244,240,0.72);
-    max-width: 420px;
+  .hero-notice {
+    display: flex; align-items: flex-start; gap: 14px;
+    max-width: 460px;
+    background: var(--cream-light);
+    color: var(--burgundy-dark);
+    border: 2px solid var(--gold);
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: 0 8px 24px rgba(61,43,43,0.22);
   }
+  .hero-notice .hn-icon { flex-shrink: 0; font-size: 24px; line-height: 1.3; }
+  .hero-notice p { font-size: 16px; font-weight: 400; line-height: 1.6; }
+  .hero-notice strong { font-weight: 500; color: var(--burgundy); }
 
   /* ── CONTENT ── */
   .content {
@@ -186,11 +191,11 @@
   input:focus, select:focus {
     border-color: var(--burgundy);
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(122,63,58,0.09);
+    box-shadow: 0 0 0 3px rgba(139,100,100,0.09);
   }
 
   select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a5c4a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B6464' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 16px center;
     background-color: var(--cream-light);
@@ -238,7 +243,7 @@
     border-radius: 6px;
     transition: color 0.15s, background 0.15s;
   }
-  .termin-remove:hover { color: var(--burgundy); background: rgba(122,63,58,0.07); }
+  .termin-remove:hover { color: var(--burgundy); background: rgba(139,100,100,0.07); }
 
   .termin-date-field { margin-bottom: 12px; }
   .termin-date-field label { margin-bottom: 6px; }
@@ -282,7 +287,7 @@
 
   .toggle-btn.selected-absage {
     border-color: var(--burgundy);
-    background: #fdf0ef;
+    background: #F6E9E7;
     color: var(--burgundy);
   }
   .toggle-btn.selected-absage .tb-dot { background: var(--burgundy); }
@@ -308,7 +313,7 @@
   .btn-add-termin:hover {
     border-color: var(--burgundy);
     color: var(--burgundy);
-    background: rgba(122,63,58,0.03);
+    background: rgba(139,100,100,0.03);
   }
   .btn-add-termin .plus {
     width: 24px; height: 24px;
@@ -318,7 +323,7 @@
     font-size: 16px; line-height: 1;
     transition: background 0.18s;
   }
-  .btn-add-termin:hover .plus { background: rgba(122,63,58,0.1); }
+  .btn-add-termin:hover .plus { background: rgba(139,100,100,0.1); }
 
   /* ── INFO STRIPE ── */
   .info-stripe {
@@ -348,7 +353,7 @@
   }
   .btn-submit:hover:not(:disabled) {
     background: var(--burgundy-dark);
-    box-shadow: 0 6px 22px rgba(122,63,58,0.28);
+    box-shadow: 0 6px 22px rgba(139,100,100,0.28);
     transform: translateY(-1px);
   }
   .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -356,8 +361,8 @@
   /* ── ERROR ── */
   .error-banner {
     display: none;
-    background: #fdf0ef;
-    border: 1px solid #e8b4b0;
+    background: #F6E9E7;
+    border: 1px solid #E0C2BE;
     border-radius: 10px;
     padding: 14px 18px;
     font-size: 13px; color: var(--burgundy);
@@ -417,7 +422,7 @@
     flex-shrink: 0;
   }
   .sti-badge.online  { background: var(--green-light); color: var(--green); }
-  .sti-badge.absage  { background: #fdf0ef; color: var(--burgundy); }
+  .sti-badge.absage  { background: #F6E9E7; color: var(--burgundy); }
 
   /* ── FOOTER ── */
   .foot {
@@ -445,7 +450,7 @@
 <div class="hero">
   <div class="hero-brand">
     <div class="hero-logo">
-      <img src="/logo.png" alt="Bauch Baby Beckenboden Logo"/>
+      <img src="https://raw.githubusercontent.com/bauchbabybeckenboden-karo/Logos/main/Clitlogo-creme.png" alt="Bauch Baby Beckenboden Logo"/>
     </div>
     <div>
       <div class="hero-brand-name">Bauch · Baby · Beckenboden</div>
@@ -456,7 +461,10 @@
   <div class="hero-eyebrow">Kurzmeldung</div>
   <div class="hero-h1">Absage oder</div>
   <span class="hero-h1-italic">Online-Teilnahme</span>
-  <p class="hero-desc">Kannst Du nicht live dabei sein oder möchtest Du online teilnehmen? Sag kurz Bescheid – ich freue mich, wenn ich planen kann 🌸</p>
+  <div class="hero-notice">
+    <span class="hn-icon">‼️</span>
+    <p><strong>Hebe die E-Mail zu Deinem Nachholtermin gut auf</strong>, sie ist die Voraussetzung dafür, dass er angefordert werden kann.</p>
+  </div>
 </div>
 
 <!-- CONTENT -->
@@ -519,9 +527,8 @@
     </button>
 
     <div class="info-stripe">
-      <span class="si">🌿</span>
-      <span>Du kannst mehrere Termine auf einmal melden. Wähle für jeden Termin aus, ob Du <strong>online</strong> dabei sein möchtest oder <strong>nicht teilnehmen</strong> kannst.<br/><br/>
-      💡 <strong>Nicht dabei?</strong> Du hast die Möglichkeit, die Stunde per Video nachzuholen. Nach Deiner Meldung bekommst Du per Mail einen persönlichen Link, über den Du die Nachholstunde anfordern kannst – nach Erhalt des Videolinks hast Du <strong>24 Stunden</strong> Zeit, die Stunde nachzuholen.</span>
+      <span class="si">📆</span>
+      <span>Du kannst mehrere Termine melden - einfach einzeln auswählen.</span>
     </div>
   </div>
 
@@ -693,17 +700,7 @@
         stl.appendChild(div);
       });
 
-      const hatOnline = termine.some(t => t.meldung === 'Online-Teilnahme');
-      const hatAbsage = termine.some(t => t.meldung === 'Absage');
-
-      let successText = '';
-      if (hatOnline && hatAbsage) {
-        successText = 'Die Zugangsdaten für Zoom und den persönlichen Link zur Nachholstunde für Deine Absage(n) habe ich Dir per Mail geschickt – bitte schau auch im Spam-Ordner nach.';
-      } else if (hatOnline) {
-        successText = 'Super, ich freue mich, dass Du online dabei bist! Die Zoom-Zugangsdaten habe ich Dir per Mail geschickt – bitte schau auch im Spam-Ordner nach.';
-      } else {
-        successText = 'Schade, dass Du nicht live dabei sein kannst! Ich habe Dir per Mail den persönlichen Link zur Nachholstunde geschickt – bitte bewahre die Mail gut auf und schau auch im Spam-Ordner nach.';
-      }
+      const successText = '✨ Du erhältst in Kürze von mir eine Nachricht wie’s weitergeht ✨';
 
       document.getElementById('successText').textContent = successText;
       document.getElementById('successScreen').style.display = 'block';
