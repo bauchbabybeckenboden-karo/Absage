@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Absage · Bauch Baby Beckenboden</title>
 
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init({ publicKey: '6DXWttFI3lioO8ZHC' });
-</script>
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
@@ -480,7 +474,7 @@
     </div>
   </div>
 
-  <!-- 2 E-Mail (NEU – für EmailJS Bestätigung) -->
+  <!-- 2 E-Mail (für die Bestätigung) -->
   <div class="form-section">
     <div class="section-head">
       <div class="section-num">2</div>
@@ -527,7 +521,7 @@
     <div class="info-stripe">
       <span class="si">🌿</span>
       <span>Du kannst mehrere Termine auf einmal melden. Wähle für jeden Termin aus, ob Du <strong>online</strong> dabei sein möchtest oder <strong>nicht teilnehmen</strong> kannst.<br/><br/>
-      💡 <strong>Nicht dabei?</strong> Du hast die Möglichkeit, die Stunde per Video nachzuholen. Frag den Link einfach per <strong>WhatsApp</strong> bei mir an – nach Erhalt des Videolinks hast Du <strong>24 Stunden</strong> Zeit, die Stunde nachzuholen.</span>
+      💡 <strong>Nicht dabei?</strong> Du hast die Möglichkeit, die Stunde per Video nachzuholen. Nach Deiner Meldung bekommst Du per Mail einen persönlichen Link, über den Du die Nachholstunde anfordern kannst – nach Erhalt des Videolinks hast Du <strong>24 Stunden</strong> Zeit, die Stunde nachzuholen.</span>
     </div>
   </div>
 
@@ -558,6 +552,9 @@
 <div class="foot">Bauch · Baby · Beckenboden · bauch-baby-beckenboden.de</div>
 
 <script>
+  /* Adresse der Apps-Script-Web-App (Bereitstellen > Web-App, endet auf /exec) */
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzK52aWnGGNQmH1uFYm8PQNXWPHRDIXgfhdGxAzlbYjwtipYVVJEqOcYdsatd0wQb9_BQ/exec';
+
   let terminCounter = 0;
 
   /* Beim Laden ersten Termin erzeugen */
@@ -628,38 +625,6 @@
   }
 
   /* ─────────────────────────────────────────────
-     HILFS-FUNKTIONEN für E-Mail-Texte
-  ───────────────────────────────────────────── */
-
-  /**
-   * Baut den termine_text für die EmailJS-Bestätigung an die Teilnehmerin.
-   * Gibt einen lesbaren Satz zurück, z. B.:
-   * "Du hast folgende Termine gemeldet:
-   *  • 12.06.2025 → Online-Teilnahme
-   *  • 19.06.2025 → Absage"
-   */
-  function buildTermineText(termine) {
-    const zeilen = termine.map(t => `• ${t.datum}  →  ${t.meldung}`).join('\n');
-    return `Du hast folgende Termine gemeldet:\n${zeilen}`;
-  }
-
-  /**
-   * Baut die optionale {{nachricht}}-Variable:
-   * Nur bei Absagen wird ein Hinweis auf das Nachholen eingefügt.
-   */
-  function buildNachricht(termine) {
-    const hatAbsage = termine.some(t => t.meldung === 'Absage');
-    const hatOnline = termine.some(t => t.meldung === 'Online-Teilnahme');
-
-    if (hatAbsage && hatOnline) {
-      return '<p>Für deine Absagen: Zum Nachholen schreib mir einfach eine kurze <a href="mailto:bauch.baby.beckenboden@gmail.com">E-Mail</a> am Tag BEVOR Du die Stunde nachholen magst. Du erhältst dann einen Link mit 24 Stunden Gültigkeit. 🍀</p>';
-    } else if (hatAbsage) {
-      return '<p>Zum Nachholen deiner Stunde schreib mir einfach eine kurze <a href="mailto:bauch.baby.beckenboden@gmail.com">E-Mail</a> am Tag BEVOR Du die Stunde nachholen magst. Du erhältst dann einen Link mit 24 Stunden Gültigkeit. 🍀</p>';
-    }
-    return '';
-  }
-
-  /* ─────────────────────────────────────────────
      HAUPT-SUBMIT
   ───────────────────────────────────────────── */
   async function submitForm() {
@@ -689,36 +654,28 @@
       termine.push({ datum: datumFormatiert, meldung: meldung === 'online' ? 'Online-Teilnahme' : 'Absage' });
     }
 
+    if (WEBAPP_URL.indexOf('HIER-') === 0) { showError('Die Web-App-Adresse fehlt noch in der Datei (WEBAPP_URL).'); return; }
+
     const btn = document.getElementById('btnSubmit');
     btn.disabled = true;
     btn.textContent = 'Wird gesendet …';
     errorBanner.style.display = 'none';
 
     try {
-      /* ── 1) Resend via Netlify Function → Benachrichtigung an Karo ── */
-      const resendRes = await fetch('/.netlify/functions/absage', {
+      /* ── Meldung an die Apps-Script-Web-App: trägt ins Sheet ein, benachrichtigt Karo
+            und schickt der Teilnehmerin ihre Bestätigung ── */
+      const antwort = await fetch(WEBAPP_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ vorname, email, kursart, termine }),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // text/plain: kein Preflight nötig
+        body: JSON.stringify({ vorname, email, kursart, termine }),
       });
-      if (!resendRes.ok) throw new Error('Resend fehlgeschlagen');
-
-      /* ── 2) EmailJS → Bestätigungs-E-Mail an Teilnehmerin ── */
-      const termineText = buildTermineText(termine);
-      const nachricht   = buildNachricht(termine);
-
-      await emailjs.send(
-        'service_07r1rpa',    // Service ID
-        'template_dksox2j',   // Template ID
-        {
-          Vorname:       vorname,
-          kursart:       kursart,
-          termine_text:  termineText,
-          nachricht:     nachricht,
-          reply_to:      email,   // damit Karo direkt antworten kann
-        }
-        // Empfänger-E-Mail kommt aus dem EmailJS-Template ({{reply_to}} oder feste Adresse)
-      );
+      const ergebnis = await antwort.json();
+      if (!ergebnis.ok) {
+        showError(ergebnis.fehler || 'Leider ist etwas schiefgelaufen. Bitte versuche es erneut.');
+        btn.disabled = false;
+        btn.textContent = 'Jetzt Bescheid geben →';
+        return;
+      }
 
       /* ── Erfolg anzeigen ── */
       document.querySelectorAll('.form-section').forEach(el => el.style.display = 'none');
@@ -741,11 +698,11 @@ body: JSON.stringify({ vorname, email, kursart, termine }),
 
       let successText = '';
       if (hatOnline && hatAbsage) {
-        successText = 'Die Zugangsdaten für Zoom findest Du in der Gruppenbeschreibung. Für die anderen Stunden kannst Du von Mo–Do eine Nachholstunde anfragen – schreib mir einfach eine WhatsApp oder E-Mail.';
+        successText = 'Die Zugangsdaten für Zoom und den persönlichen Link zur Nachholstunde für Deine Absage(n) habe ich Dir per Mail geschickt – bitte schau auch im Spam-Ordner nach.';
       } else if (hatOnline) {
-        successText = 'Super, ich freue mich, dass Du online dabei bist! Du findest die Zoom-Zugangsdaten in der Gruppenbeschreibung. Bei Fragen meld Dich jederzeit gerne.';
+        successText = 'Super, ich freue mich, dass Du online dabei bist! Die Zoom-Zugangsdaten habe ich Dir per Mail geschickt – bitte schau auch im Spam-Ordner nach.';
       } else {
-        successText = 'Schade, dass Du nicht live dabei sein kannst! Um die Stunde mit einem Video zu Hause nachzuholen, sende mir eine Nachricht. Nachdem Du den Link erhalten hast, ist er 24 Stunden für Dich gültig.';
+        successText = 'Schade, dass Du nicht live dabei sein kannst! Ich habe Dir per Mail den persönlichen Link zur Nachholstunde geschickt – bitte bewahre die Mail gut auf und schau auch im Spam-Ordner nach.';
       }
 
       document.getElementById('successText').textContent = successText;
