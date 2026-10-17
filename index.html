@@ -37,7 +37,7 @@
   /* ── HERO ── */
   .hero {
     background: var(--burgundy);
-    padding: 48px 32px 64px;
+    padding: 48px max(32px, calc(50% - 320px)) 64px;
     color: var(--cream-light);
     position: relative;
   }
@@ -102,15 +102,17 @@
     margin-bottom: 24px;
   }
   .hero-notice {
-    display: flex; align-items: flex-start; gap: 14px;
-    max-width: 460px;
+    display: flex; flex-direction: column; gap: 14px;
+    max-width: 640px;
     background: var(--cream-light);
     color: var(--burgundy-dark);
     border: 2px solid var(--gold);
     border-radius: 18px;
-    padding: 18px 22px;
+    padding: 20px 24px;
     box-shadow: 0 8px 24px rgba(61,43,43,0.22);
   }
+  .hero-notice .hn-row { display: flex; align-items: flex-start; gap: 14px; }
+  .hero-notice .hn-row + .hn-row { border-top: 1px solid var(--border); padding-top: 14px; }
   .hero-notice .hn-icon { flex-shrink: 0; font-size: 24px; line-height: 1.3; }
   .hero-notice p { font-size: 16px; font-weight: 400; line-height: 1.6; }
   .hero-notice strong { font-weight: 500; color: var(--burgundy); }
@@ -462,8 +464,14 @@
   <div class="hero-h1">Absage oder</div>
   <span class="hero-h1-italic">Online-Teilnahme</span>
   <div class="hero-notice">
-    <span class="hn-icon">‼️</span>
-    <p><strong>Hebe die E-Mail zu Deinem Nachholtermin gut auf</strong>, sie ist die Voraussetzung dafür, dass er angefordert werden kann.</p>
+    <div class="hn-row">
+      <span class="hn-icon">‼️</span>
+      <p><strong>Hebe die E-Mail zu Deinem Nachholtermin gut auf</strong>, sie ist die Voraussetzung dafür, dass er angefordert werden kann.</p>
+    </div>
+    <div class="hn-row">
+      <span class="hn-icon">📆</span>
+      <p>Du kannst mehrere Termine melden - einfach einzeln auswählen.</p>
+    </div>
   </div>
 </div>
 
@@ -525,11 +533,6 @@
       <span class="plus">+</span>
       Weiteren Termin hinzufügen
     </button>
-
-    <div class="info-stripe">
-      <span class="si">📆</span>
-      <span>Du kannst mehrere Termine melden - einfach einzeln auswählen.</span>
-    </div>
   </div>
 
   <!-- Absenden -->
