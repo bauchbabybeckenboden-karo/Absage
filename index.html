@@ -53,25 +53,25 @@
   .hero-brand {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 44px;
+    gap: 22px;
+    margin-bottom: 40px;
   }
   .hero-logo {
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
   .hero-logo img {
-    height: 84px; width: auto;
+    height: 120px; width: auto;
     display: block;
   }
   .hero-brand-name {
-    font-size: 15px; font-weight: 400;
+    font-size: 26px; font-weight: 400;
     letter-spacing: 0.3px;
     color: var(--cream-light);
     line-height: 1.25;
   }
   .hero-brand-sub {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
@@ -87,20 +87,12 @@
   }
   .hero-h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 40px; font-weight: 300;
-    line-height: 1.1;
-    color: var(--cream-light);
-    margin-bottom: 2px;
-  }
-  .hero-h1-italic {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px; font-weight: 300;
-    font-style: italic;
-    color: var(--gold);
+    font-size: clamp(22px, 4.6vw, 34px); font-weight: 300;
     line-height: 1.15;
-    display: block;
-    margin-bottom: 24px;
+    color: var(--cream-light);
+    margin-bottom: 28px;
   }
+  @media (min-width: 520px) { .hero-h1 { white-space: nowrap; } }
   .hero-notice {
     display: flex; flex-direction: column; gap: 14px;
     max-width: 640px;
@@ -438,7 +430,9 @@
 
   @media (max-width: 500px) {
     .hero { padding: 36px 22px 58px; }
-    .hero-h1, .hero-h1-italic { font-size: 32px; }
+    .hero-h1 { font-size: clamp(18px, 5vw, 28px); }
+    .hero-logo img { height: 96px; }
+    .hero-brand-name { font-size: 22px; }
     .content { padding: 0 14px 48px; }
     .form-section { padding: 20px 18px 18px; }
     .field-row { grid-template-columns: 1fr; }
@@ -460,9 +454,7 @@
     </div>
   </div>
 
-  <div class="hero-eyebrow">Kurzmeldung</div>
-  <div class="hero-h1">Absage oder</div>
-  <span class="hero-h1-italic">Online-Teilnahme</span>
+  <div class="hero-h1">Meldung über Onlineteilnahme oder Absage</div>
   <div class="hero-notice">
     <div class="hn-row">
       <span class="hn-icon">‼️</span>
