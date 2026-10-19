@@ -725,7 +725,15 @@
     if (kurs) {
       const sel = document.getElementById('kursart');
       const norm = t => t.toLowerCase().replace(/&amp;|&/g, 'und').replace(/\s+/g, ' ').trim();
-      const opt = [...sel.options].find(o => norm(o.value) === norm(kurs) || norm(o.value).includes(norm(kurs)) || norm(kurs).includes(norm(o.value)));
+      const k = norm(kurs);
+      const regeln = [
+        [/mamafit/, 'Mamafit'],
+        [/schwanger/, 'Schwangerfit'],
+        [/yoga/, 'Somatic Yoga'],
+        [/beckenboden|koerpermitte|körpermitte|somatic/, 'Somatic Körpermitte & Beckenboden']
+      ];
+      const treffer = regeln.find(([re]) => re.test(k));
+      const opt = [...sel.options].find(o => treffer && norm(o.value) === norm(treffer[1]));
       if (opt) sel.value = opt.value;
     }
     if (datum) { const d = document.getElementById('datum-1'); if (d) d.value = datum; }
