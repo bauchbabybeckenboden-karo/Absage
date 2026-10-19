@@ -715,6 +715,22 @@
     b.style.display = 'block';
     b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
+  window.addEventListener('DOMContentLoaded', () => {
+    const p = new URLSearchParams(location.search);
+    const name = p.get('name');
+    const kurs = p.get('kurs');
+    const datum = p.get('datum');
+    const m = p.get('meldung');
+    if (name) { const v = document.getElementById('vorname'); if (v) v.value = name; }
+    if (kurs) {
+      const sel = document.getElementById('kursart');
+      const norm = t => t.toLowerCase().replace(/&amp;|&/g, 'und').replace(/\s+/g, ' ').trim();
+      const opt = [...sel.options].find(o => norm(o.value) === norm(kurs) || norm(o.value).includes(norm(kurs)) || norm(kurs).includes(norm(o.value)));
+      if (opt) sel.value = opt.value;
+    }
+    if (datum) { const d = document.getElementById('datum-1'); if (d) d.value = datum; }
+    if (m) selectMeldung(1, m);
+  });
 </script>
 
 </body>
