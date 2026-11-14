@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Absage · Bauch Baby Beckenboden</title>
+<title>Absage · Wunderwerk Frau</title>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
@@ -438,21 +438,45 @@
     .field-row { grid-template-columns: 1fr; }
     .termin-toggle { grid-template-columns: 1fr; }
   }
+
+  /* ── Wunderwerk Frau: Kopfbereich (einheitlich für alle Seiten) ── */
+  .ww-header { background:#8B6464; color:#F3E9E5; padding:24px 20px; }
+  .ww-inner { max-width:760px; margin:0 auto; display:flex; align-items:center; gap:20px; text-align:left; }
+  .ww-in-hero { margin-bottom:30px; }
+  .ww-logo { height:88px; width:auto; flex-shrink:0; display:block; }
+  .ww-text { min-width:0; }
+  .ww-name { font-family:'Cormorant Garamond', Georgia, serif; font-weight:700; font-size:32px; line-height:1.1; letter-spacing:.5px; color:#F3E9E5; }
+  .ww-line { height:1px; background:#F3E9E5; max-width:320px; margin:8px 0; }
+  .ww-sub { font-family:Arial, Helvetica, sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#F3E9E5; }
+  .ww-tag { font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-size:15px; line-height:1.35; color:#F3E9E5; margin-top:6px; }
+  .ww-topic { font-family:Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#8B6464; text-align:center; margin:0 0 18px; }
+  .ww-topic-hell { color:#F3E9E5; text-align:left; margin:0 0 14px; }
+  @media (max-width:540px) {
+    .ww-inner { flex-direction:column; text-align:center; gap:12px; }
+    .ww-line { margin:8px auto; }
+    .ww-logo { height:76px; }
+    .ww-name { font-size:28px; }
+    .ww-topic-hell { text-align:center; }
+  }
+
+  .foot { color:#6F4F4F !important; }
 </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 </head>
 <body>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-brand">
-    <div class="hero-logo">
-      <img src="https://raw.githubusercontent.com/bauchbabybeckenboden-karo/Logos/main/Clitlogo-creme.png" alt="Bauch Baby Beckenboden Logo"/>
+  <div class="ww-inner ww-in-hero">
+      <img class="ww-logo" src="https://raw.githubusercontent.com/bauchbabybeckenboden-karo/Logos/main/Clitlogo-creme.png" alt="Wunderwerk Frau Logo" />
+      <div class="ww-text">
+        <div class="ww-name">Wunderwerk Frau</div>
+        <div class="ww-line"></div>
+        <div class="ww-sub">Bauch &middot; Baby &middot; Beckenboden</div>
+        <div class="ww-tag">Trageberatungen sowie Sport-, Beckenboden- &amp; somatische Yogakurse für Frauen</div>
+      </div>
     </div>
-    <div>
-      <div class="hero-brand-name">Bauch · Baby · Beckenboden</div>
-      <div class="hero-brand-sub">Kursmeldung</div>
-    </div>
-  </div>
+  <div class="ww-topic ww-topic-hell">Kursmeldung</div>
 
   <div class="hero-h1">Meldung über Onlineteilnahme oder Absage</div>
   <div class="hero-notice">
@@ -490,7 +514,7 @@
     </div>
     <div class="field">
       <label for="email">E-Mail <span class="req">*</span></label>
-      <input type="email" id="email" placeholder="deine@email.de" autocomplete="email"/>
+      <input type="email" id="email" placeholder="Deine@email.de" autocomplete="email"/>
     </div>
   </div>
 
@@ -544,14 +568,14 @@
     <p id="successText"></p>
     <p style="margin-top:20px">
       Viele Grüße,<br/>
-      <strong>Deine ♦️ Karo ♦️</strong><br/>
-      <em style="font-size:12px;color:var(--gold)">Bauch · Baby · Beckenboden</em>
+      <strong>Deine Karo <span style="color:#C0392B">&#9830;</span></strong><br/>
+      <em style="font-size:13px;color:var(--burgundy)">Wunderwerk Frau · Bauch · Baby · Beckenboden</em>
     </p>
   </div>
 
 </div>
 
-<div class="foot">Bauch · Baby · Beckenboden · bauch-baby-beckenboden.de</div>
+<div class="foot">Wunderwerk Frau · Bauch · Baby · Beckenboden · bauch-baby-beckenboden.de</div>
 
 <script>
   /* Adresse der Apps-Script-Web-App (Bereitstellen > Web-App, endet auf /exec) */
